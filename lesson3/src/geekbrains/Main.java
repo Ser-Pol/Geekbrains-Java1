@@ -10,7 +10,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         System.out.println("Enter number of task (1 - 3):");
-        switch (in.nextInt())
+i2:     switch (in.nextInt())
         {
             case 1:
                 spiralMatrix();
@@ -21,7 +21,7 @@ public class Main {
                     gameGuessNumber();
 
                     System.out.println("Do you want to play again? (1 - yes, 0 or something else - no)");
-                    if (in.nextInt() != 1) break;
+                    if (in.nextInt() != 1) break i2;
                 }
             case 3:
                 break;
