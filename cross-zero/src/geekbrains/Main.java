@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main
 {
     public static int SIZE;
+    public static int WIN_LEN;
     public static char[][] board;
     public static char EMPTY = '*';
 
@@ -13,8 +14,23 @@ public class Main
     public static void main(String[] args)
     {
 	// write your code here
-        System.out.println("Enter size of the board...");
-        SIZE = in.nextInt();
+        boolean flag = true;
+        do
+        {
+            System.out.println("Enter size of the board...");
+            SIZE = in.nextInt();
+            System.out.println("Enter length of winning row...");
+            WIN_LEN = in.nextInt();
+
+            if (SIZE < 3)
+                System.out.println("Size of the board must be greater than 2...");
+            else if (WIN_LEN > SIZE)
+                System.out.println("Length of winning row cannot be greater than size of the board...");
+            else
+                flag = false;
+            System.out.println();
+        } while (flag);
+
         board = new char[SIZE][SIZE];
         initBoard();
         printBoard();
