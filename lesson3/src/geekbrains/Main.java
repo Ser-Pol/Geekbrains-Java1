@@ -16,7 +16,13 @@ public class Main {
                 spiralMatrix();
                 break;
             case 2:
-                break;
+                while (true)
+                {
+                    gameGuessNumber();
+
+                    System.out.println("Do you want to play again? (1 - yes, 0 or something else - no)");
+                    if (in.nextInt() != 1) break;
+                }
             case 3:
                 break;
             default:
@@ -63,5 +69,32 @@ public class Main {
                 System.out.printf("%5d", mat[i][j]);
             System.out.println();
         }
+    }
+
+    public static void gameGuessNumber()
+    {
+        int guess = (int)Math.round(Math.random() * 10);
+        int num;
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Try to guess the number from 0 to 9");
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (i > 0) System.out.println("Try again...");
+            num = in.nextInt();
+            if (num == guess)
+            {
+                System.out.println("You win!!!");
+                return;
+            }
+            else if (num > guess)
+                System.out.println("The right number is smaller.");
+            else
+                System.out.println("The right number is greater.");
+        }
+
+        System.out.println("You loose...");
+        System.out.println();
     }
 }
