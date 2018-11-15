@@ -12,7 +12,8 @@ public class Main
     public static char ZERO = 'O';      // Символ "нолика"
     public static char HUMAN;           // Символ игрока
     public static char AI;              // Символ компьютера
-    public static boolean MOVE;        // Принадлежит ли ход игроку
+    public static boolean MOVE;         // Принадлежит ли ход игроку
+    public static boolean FINISH = false;// Закончена ли игра
 
     public static Scanner in = new Scanner(System.in);
 
@@ -103,7 +104,22 @@ public class Main
             getAiCoord(coord);
 
         board[coord[1]][coord[0]] = (MOVE) ? HUMAN : AI;
+
+        if (checkWin())
+        {
+            FINISH = true;
+            if (MOVE)
+                System.out.println("You win!!!");
+            else
+                System.out.println("You loose...");
+            return;
+        }
         MOVE = !MOVE;
+    }
+
+    public static boolean checkWin()
+    {
+        return true;
     }
 
     public static void getHumanCoord(int[] coord)
