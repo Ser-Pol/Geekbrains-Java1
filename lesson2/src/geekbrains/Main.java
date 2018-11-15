@@ -21,6 +21,15 @@ public class Main {
         System.out.println();
 
         fillDiagonal();
+
+        System.out.println();
+
+        int[] arr = new int[8];
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = (int)Math.round(Math.random()*100);
+
+        System.out.println(Arrays.toString(arr));
+        printMinMax(arr);
     }
 
     public static void revertArray()
@@ -65,5 +74,20 @@ public class Main {
 
         for (int i = 0; i < arr.length; i++)
             System.out.println(Arrays.toString(arr[i]));
+    }
+
+    public static void printMinMax(int[] arr)
+    {
+        int min, max;
+
+        min = max = arr[0];
+
+        for (int i = 1; i < arr.length; i++)
+        {
+            if (min > arr[i]) min = arr[i];
+            if (max < arr[i]) max = arr[i];
+        }
+
+        System.out.printf("Min of the array is %d\nMax of the array is %d\n", min, max);
     }
 }
