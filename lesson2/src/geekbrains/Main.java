@@ -9,6 +9,10 @@ public class Main {
     {
 	// write your code here
         revertArray();
+
+        System.out.println();
+
+        fillArray();
     }
 
     public static void revertArray()
@@ -21,6 +25,16 @@ public class Main {
             arr[i] = (byte)(1 - arr[i]);
 
         System.out.println("Changed array:");
+        System.out.println(Arrays.toString(arr));
+    }
+    
+    public static void fillArray()
+    {
+        int[] arr = new int[8];
+
+        for (int i = 0, k = 0; k < arr.length; i += 3, k++)
+            arr[k] = i;
+
         System.out.println(Arrays.toString(arr));
     }
 }
