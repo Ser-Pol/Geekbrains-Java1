@@ -12,7 +12,7 @@ public class Main
     public static char ZERO = 'O';      // Символ "нолика"
     public static char HUMAN;           // Символ игрока
     public static char AI;              // Символ компьютера
-    public static boolean FIRST;        // Принадлежит ли первый ход игроку
+    public static boolean MOVE;        // Принадлежит ли ход игроку
 
     public static Scanner in = new Scanner(System.in);
 
@@ -55,14 +55,14 @@ public class Main
             {
                 HUMAN = CROSS;
                 AI = ZERO;
-                FIRST = true;
+                MOVE = true;
                 flag = false;
             }
             else if (HUMAN == 'o' || HUMAN == 'O')
             {
                 HUMAN = ZERO;
                 AI = CROSS;
-                FIRST = false;
+                MOVE = false;
                 flag = false;
             }
             else
@@ -81,7 +81,7 @@ public class Main
     {
         System.out.printf("%12d", 0);
         for (int i = 1; i < SIZE; i++) System.out.printf("%5d", i);
-        System.out.println();
+        System.out.println(" (X)");
         System.out.println();
         for (int i = 0; i < SIZE; i++)
         {
@@ -90,5 +90,30 @@ public class Main
                 System.out.printf("%5c", board[i][j]);
             System.out.println();
         }
+        System.out.println("     (Y)");
     }
+
+    public static void move()
+    {
+        int[] coord = new int[2];
+
+        if (MOVE)
+            getHumanCoord(coord);
+        else
+            getAiCoord(coord);
+
+        board[coord[1]][coord[0]] = (MOVE) ? HUMAN : AI;
+        MOVE = !MOVE;
+    }
+
+    public static void getHumanCoord(int[] coord)
+    {
+
+    }
+
+    public static void getAiCoord(int[] coord)
+    {
+
+    }
+
 }
