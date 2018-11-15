@@ -30,6 +30,17 @@ public class Main {
 
         System.out.println(Arrays.toString(arr));
         printMinMax(arr);
+
+        System.out.println();
+
+        int[] arr1 = {1, 1, 1, 2, 1};
+        int[] arr2 = {2, 1, 1, 2, 1};
+        int[] arr3 = {10, 10};
+
+        System.out.printf("Array %s is balanced, isn't it? - %b\n", Arrays.toString(arr1),checkBalance(arr1));
+        System.out.printf("Array %s is balanced, isn't it? - %b\n", Arrays.toString(arr2),checkBalance(arr2));
+        System.out.printf("Array %s is balanced, isn't it? - %b\n", Arrays.toString(arr3),checkBalance(arr3));
+
     }
 
     public static void revertArray()
@@ -89,5 +100,21 @@ public class Main {
         }
 
         System.out.printf("Min of the array is %d\nMax of the array is %d\n", min, max);
+    }
+
+    public static boolean checkBalance(int[] arr)
+    {
+        int left = 0, right = 0;
+
+        for (int i = 0; i < arr.length; i++)
+            right += arr[i];
+
+        for (int i = 0; i < arr.length; i++)
+        {
+           left += arr[i];
+           right -= arr[i];
+           if (left == right) return true;
+        }
+        return false;
     }
 }
