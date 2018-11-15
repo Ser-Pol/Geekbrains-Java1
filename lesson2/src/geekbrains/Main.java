@@ -17,6 +17,10 @@ public class Main {
         System.out.println();
 
         changeArray();
+
+        System.out.println();
+
+        fillDiagonal();
     }
 
     public static void revertArray()
@@ -50,5 +54,16 @@ public class Main {
             if (arr[i] < 6) arr[i] *= 2;
 
         System.out.println(Arrays.toString(arr));
+    }
+
+    public static void fillDiagonal()
+    {
+        int[][] arr = new int[8][8];
+
+        for (int i = 0; i < arr.length; i++)
+            arr[i][i] = arr[i][arr.length-1-i] = 1;
+
+        for (int i = 0; i < arr.length; i++)
+            System.out.println(Arrays.toString(arr[i]));
     }
 }
