@@ -24,7 +24,13 @@ i2:     switch (in.nextInt())
                     if (in.nextInt() != 1) break i2;
                 }
             case 3:
-                break;
+                while (true)
+                {
+                    gameGuessNWord();
+
+                    System.out.println("Do you want to play again? (1 - yes, 0 or something else - no)");
+                    if (in.nextInt() != 1) break i2;
+                }
             default:
                 System.out.println("Not correct number");
         }
@@ -96,5 +102,46 @@ i2:     switch (in.nextInt())
 
         System.out.println("You loose...");
         System.out.println();
+    }
+
+    public static void gameGuessNWord()
+    {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry",
+                "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut",
+                "pear", "pepper", "pineapple", "pumpkin", "potato"};
+
+        System.out.printf("Guess one of these words : \n%s\n\n", Arrays.toString(words));
+
+        Scanner in = new Scanner(System.in);
+        int guess = (int)Math.round(Math.random()*words.length), len;
+
+        String str;
+        StringBuilder answ = new StringBuilder();
+
+        while (true)
+        {
+            str = in.next();
+            if (words[guess].equals(str))
+            {
+                System.out.println("You win...");
+                return;
+            }
+            else
+            {
+                len = (words[guess].length() < str.length()) ? words[guess].length() : str.length();
+                for (int i = 0; i < len; i++)
+                {
+                    if (words[guess].charAt(i) == str.charAt(i))
+                        answ.append(str.charAt(i));
+                    else
+                        answ.append('#');
+                }
+                for (int i = len; i < 15; i++) answ.append('#');
+                System.out.println(answ);
+                System.out.println("Try again...");
+                answ.delete(0, answ.length());
+            }
+        }
+
     }
 }
