@@ -4,16 +4,26 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static int SIZE;
-    public static int WIN_LEN;
-    public static char[][] board;
-    public static char EMPTY = '*';
+    public static int SIZE;             // Размер игрового поля
+    public static int WIN_LEN;          // Длина выигрышного ряда
+    public static char[][] board;       // Игровое поле
+    public static char EMPTY = '*';     // Стмвол свободного поля
+    public static char CROSS = 'X';     // Символ "крестика"
+    public static char ZERO = 'O';      // Символ "нолика"
+    public static char HUMAN;           // Символ игрока
+    public static char AI;              // Символ компьютера
+    public static boolean FIRST;        // Принадлежит ли первый ход игроку
 
     public static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args)
     {
 	// write your code here
+        initGame();
+    }
+
+    public static void initGame()
+    {
         boolean flag = true;
         do
         {
@@ -35,6 +45,29 @@ public class Main
         initBoard();
         printBoard();
 
+        flag = true;
+        do
+        {
+            System.out.println();
+            System.out.println("Do you play by cross (x) or zero (o)? ('X' is the first)");
+            HUMAN = in.next().charAt(0);
+            if (HUMAN == 'x' || HUMAN == 'X')
+            {
+                HUMAN = CROSS;
+                AI = ZERO;
+                FIRST = true;
+                flag = false;
+            }
+            else if (HUMAN == 'o' || HUMAN == 'O')
+            {
+                HUMAN = ZERO;
+                AI = CROSS;
+                FIRST = false;
+                flag = false;
+            }
+            else
+                System.out.println("Incorrect input. Try again...");
+        } while (flag);
     }
 
     public static void initBoard()
