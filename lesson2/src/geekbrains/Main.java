@@ -41,6 +41,14 @@ public class Main {
         System.out.printf("Array %s is balanced, isn't it? - %b\n", Arrays.toString(arr2),checkBalance(arr2));
         System.out.printf("Array %s is balanced, isn't it? - %b\n", Arrays.toString(arr3),checkBalance(arr3));
 
+        System.out.println();
+        
+        int[] arr_s = new int[12];
+        for (int i = 0; i < arr_s.length; i++)
+            arr_s[i] = (int)Math.round(Math.random()*100);
+        System.out.printf("Original array is %s\n", Arrays.toString(arr_s));
+        shiftArray(arr_s, -3);
+        System.out.printf("Shifted array is %s\n", Arrays.toString(arr_s));
     }
 
     public static void revertArray()
@@ -116,5 +124,49 @@ public class Main {
            if (left == right) return true;
         }
         return false;
+    }
+
+    public static void shiftArray(int[] arr, int n)
+    {
+        if (n == 0) return;
+        if (n < 0) n = arr.length + n;
+        n %= arr.length;
+
+        int div = getGreatestCommonDivisor(arr.length, n);
+        int num = arr.length / div;
+
+        for (int i = 0; i < div; i++)
+        {
+            int p1 = 0, p2 = arr[i];
+            for (int j = 0, k = (i + n)%arr.length; j < num; j++, k = (k + n)%arr.length)
+            {
+                if (j%2 == 0)
+                {
+                    p1 = arr[k];
+                    arr[k] = p2;
+                }
+                else
+                {
+                    p2 = arr[k];
+                    arr[k] = p1;
+                }
+            }
+        }
+
+    }
+
+    public static int getGreatestCommonDivisor(int a, int b)
+    {
+        int div = 1;
+
+        for (int i = 2; i <= a && i <= b ; i++)
+            if (a % i == 0 && b % i == 0)
+            {
+                div *= i;
+                a /= i;
+                b /= i;
+                i--;
+            }
+        return div;
     }
 }
