@@ -98,9 +98,9 @@ public class Main
     public static void move()
     {
         if (MOVE)
-            getHumanCoord(coord);
+            getHumanCoord();
         else
-            getAiCoord(coord);
+            getAiCoord();
 
         board[coord[1]][coord[0]] = (MOVE) ? HUMAN : AI;
 
@@ -118,15 +118,125 @@ public class Main
 
     public static boolean checkWin()
     {
-        return true;
+/*
+       0   1   2
+        \  |  /
+         \ | /
+        ---*--- 3
+         / | \
+        /  |  \
+*/
+
+        if (checkDirection0() >= WIN_LEN || checkDirection1() >= WIN_LEN ||
+            checkDirection2() >= WIN_LEN || checkDirection3() >= WIN_LEN) return true;
+
+        return false;
     }
 
-    public static void getHumanCoord(int[] coord)
+    public static int checkDirection0()
+    {
+        char now = (MOVE) ? HUMAN : AI;
+        int count = 0, x, y;
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            x--;
+            y--;
+        } while (x >= 0 && y >= 0 && board[y][x] == now);
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            x++;
+            y++;
+        } while (x < SIZE && y < SIZE && board[y][x] == now);
+
+        return --count;
+    }
+
+    public static int checkDirection1()
+    {
+        char now = (MOVE) ? HUMAN : AI;
+        int count = 0, x, y;
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            y--;
+        } while (y >= 0 && board[y][x] == now);
+
+        y = coord[1];
+        do
+        {
+            count++;
+            y++;
+        } while (y < SIZE && board[y][x] == now);
+
+        return --count;
+    }
+
+    public static int checkDirection2()
+    {
+        char now = (MOVE) ? HUMAN : AI;
+        int count = 0, x, y;
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            x++;
+            y--;
+        } while (x < SIZE && y >= 0 && board[y][x] == now);
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            x--;
+            y++;
+        } while (x >= 0 && y < SIZE && board[y][x] == now);
+
+        return --count;
+    }
+
+    public static int checkDirection3()
+    {
+        char now = (MOVE) ? HUMAN : AI;
+        int count = 0, x, y;
+
+        x = coord[0];
+        y = coord[1];
+        do
+        {
+            count++;
+            x--;
+        } while (x >= 0 && board[y][x] == now);
+
+        x = coord[1];
+        do
+        {
+            count++;
+            x++;
+        } while (x < SIZE && board[y][x] == now);
+
+        return --count;
+    }
+
+    public static void getHumanCoord()
     {
 
     }
 
-    public static void getAiCoord(int[] coord)
+    public static void getAiCoord()
     {
 
     }
