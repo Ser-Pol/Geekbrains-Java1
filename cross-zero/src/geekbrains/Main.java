@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static int SIZE;             // Размер игрового поля
-    public static int WIN_LEN;          // Длина выигрышного ряда
-    public static char[][] board;       // Игровое поле
-    public static char EMPTY = '*';     // Стмвол свободного поля
-    public static char CROSS = 'X';     // Символ "крестика"
-    public static char ZERO = 'O';      // Символ "нолика"
-    public static char HUMAN;           // Символ игрока
-    public static char AI;              // Символ компьютера
-    public static boolean MOVE;         // Принадлежит ли ход игроку
-    public static boolean FINISH = false;// Закончена ли игра
+    public static int SIZE;                // Размер игрового поля
+    public static int WIN_LEN;             // Длина выигрышного ряда
+    public static char[][] board;          // Игровое поле
+    public static char EMPTY = '*';        // Стмвол свободного поля
+    public static char CROSS = 'X';        // Символ "крестика"
+    public static char ZERO = 'O';         // Символ "нолика"
+    public static char HUMAN;              // Символ игрока
+    public static char AI;                 // Символ компьютера
+    public static boolean MOVE;            // Принадлежит ли ход игроку
+    public static boolean FINISH = false;  // Закончена ли игра
+    public static int[] coord = new int[2];// Координаты последнего хода (x, y). board[y][x]
 
     public static Scanner in = new Scanner(System.in);
 
@@ -96,8 +97,6 @@ public class Main
 
     public static void move()
     {
-        int[] coord = new int[2];
-
         if (MOVE)
             getHumanCoord(coord);
         else
