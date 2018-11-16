@@ -22,6 +22,11 @@ public class Main
     {
 	// write your code here
         initGame();
+
+        while (!FINISH)
+        {
+            move();
+        }
     }
 
     public static void initGame()
@@ -223,7 +228,7 @@ public class Main
             x--;
         } while (x >= 0 && board[y][x] == now);
 
-        x = coord[1];
+        x = coord[0];
         do
         {
             count++;
@@ -260,8 +265,8 @@ public class Main
 
         do
         {
-            x = (int)Math.round(Math.random()*SIZE);
-            y = (int)Math.round(Math.random()*SIZE);
+            x = (int)Math.round(Math.random()*(SIZE-1));
+            y = (int)Math.round(Math.random()*(SIZE-1));
         } while (board[y][x] != EMPTY);
 
         coord[0] = y;
