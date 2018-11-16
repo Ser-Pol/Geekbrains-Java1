@@ -104,6 +104,8 @@ public class Main
 
         board[coord[1]][coord[0]] = (MOVE) ? HUMAN : AI;
 
+        printBoard();
+
         if (checkWin())
         {
             FINISH = true;
@@ -233,7 +235,23 @@ public class Main
 
     public static void getHumanCoord()
     {
+        int x, y;
+        boolean flag = true;
 
+        do
+        {
+            System.out.println("Your move! Enter coordinates x, y...");
+            x = in.nextInt();
+            y = in.nextInt();
+
+            if (x >=0 && x < SIZE && y >= 0 && y < SIZE && board[y][x] == EMPTY)
+                flag = false;
+            else
+                System.out.println("Incorrect coordinates for move. Try again...");
+        } while (flag);
+
+        coord[0] = x;
+        coord[1] = y;
     }
 
     public static void getAiCoord()
