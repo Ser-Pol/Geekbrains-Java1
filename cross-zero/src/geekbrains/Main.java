@@ -256,7 +256,16 @@ public class Main
 
     public static void getAiCoord()
     {
+        int x, y;
 
+        do
+        {
+            x = (int)Math.round(Math.random()*SIZE);
+            y = (int)Math.round(Math.random()*SIZE);
+        } while (board[y][x] != EMPTY);
+
+        coord[0] = y;
+        coord[1] = x;
     }
 
 }
